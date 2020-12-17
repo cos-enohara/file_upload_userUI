@@ -28,20 +28,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  banner: {
-    backgroundColor: theme.palette.background.paper,
-    paddingBottom: theme.spacing(2),
-    paddingTop: theme.spacing(2),
-    borderBottom: `1px solid ${theme.palette.divider}`
-  },
-  bannerChip: {
-    marginRight: theme.spacing(2)
-  },
-  methodIcon: {
-    height: 30,
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2)
-  },
   cardContainer: {
     paddingBottom: 80,
     paddingTop: 80,
@@ -99,7 +85,7 @@ const LoginView = () => {
                 ○○学会（イベント名）
               </Typography>
             </Box>
-            <Card className={classes.root}>
+            <Card>
               <CardMedia
                 className={classes.media}
                 image="/static/images/event/corona.jpg"

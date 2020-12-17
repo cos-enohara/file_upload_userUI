@@ -99,8 +99,6 @@ const JWTLogin = ({ className, ...rest }) => {
               value={age}
               onChange={ageChange}
               label="Age"
-              labelWidth="120"
-              fullWidth
             >
               <MenuItem value="">
                 <em>None</em>
