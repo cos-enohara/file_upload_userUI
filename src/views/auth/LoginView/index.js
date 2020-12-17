@@ -3,6 +3,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
   Card,
+  CardActionArea,
+  CardActions,
+  CardMedia,
   CardContent,
   Chip,
   Container,
@@ -19,18 +22,11 @@ import Auth0Login from './Auth0Login';
 import FirebaseAuthLogin from './FirebaseAuthLogin';
 import JWTLogin from './JWTLogin';
 
-const methodIcons = {
-  'Auth0': '/static/images/auth0.svg',
-  'FirebaseAuth': '/static/images/firebase.svg',
-  'JWT': '/static/images/jwt.svg'
-};
-
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh'
   },
   banner: {
     backgroundColor: theme.palette.background.paper,
@@ -62,7 +58,10 @@ const useStyles = makeStyles((theme) => ({
       width: 'auto',
       maxHeight: '100%'
     }
-  }
+  },
+  media: {
+    height: 200,
+  },
 }));
 
 const LoginView = () => {
@@ -74,63 +73,6 @@ const LoginView = () => {
       className={classes.root}
       title="Login"
     >
-      <div className={classes.banner}>
-        <Container maxWidth="md">
-          <Box
-            alignItems="center"
-            display="flex"
-            justifyContent="center"
-          >
-            <Chip
-              color="secondary"
-              label="NEW"
-              size="small"
-              className={classes.bannerChip}
-            />
-            <Box
-              alignItems="center"
-              display="flex"
-            >
-              <Typography
-                color="textPrimary"
-                variant="h6"
-              >
-                Visit our
-                {' '}
-                <Link
-                  component={RouterLink}
-                  to="/docs"
-                >
-                  docs
-                </Link>
-                {' '}
-                and find out how to switch between
-              </Typography>
-              <Tooltip title="Auth0">
-                <img
-                  alt="Auth0"
-                  className={classes.methodIcon}
-                  src={methodIcons['Auth0']}
-                />
-              </Tooltip>
-              <Tooltip title="Firebase">
-                <img
-                  alt="Firebase"
-                  className={classes.methodIcon}
-                  src={methodIcons['FirebaseAuth']}
-                />
-              </Tooltip>
-              <Tooltip title="JSON Web Token">
-                <img
-                  alt="JWT"
-                  className={classes.methodIcon}
-                  src={methodIcons['JWT']}
-                />
-              </Tooltip>
-            </Box>
-          </Box>
-        </Container>
-      </div>
       <Container
         className={classes.cardContainer}
         maxWidth="sm"
@@ -140,40 +82,44 @@ const LoginView = () => {
           display="flex"
           justifyContent="center"
         >
-          <RouterLink to="/">
-            <Logo />
-          </RouterLink>
         </Box>
         <Card>
           <CardContent className={classes.cardContent}>
             <Box
               alignItems="center"
-              display="flex"
               justifyContent="space-between"
               mb={3}
             >
-              <div>
-                <Typography
-                  color="textPrimary"
-                  gutterBottom
-                  variant="h2"
-                >
-                  Sign in
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  Sign in on the internal platform
-                </Typography>
-              </div>
-              <div className={classes.currentMethodIcon}>
-                <img
-                  alt="Auth method"
-                  src={methodIcons[method]}
-                />
-              </div>
+              <Typography
+                color="textPrimary"
+                gutterBottom
+                variant="h2"
+                align="center"
+              >
+                ○○学会（イベント名）
+              </Typography>
             </Box>
+            <Card className={classes.root}>
+              <CardMedia
+                className={classes.media}
+                image="/static/images/event/corona.jpg"
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  演者への案内、注意事項等
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                大変お忙しいところをお集まりいただきまして
+                有難うございます．日本感染症学会は新型コロナウイ
+                ルス感染症（COVID-19）に対して提言を出したり，
+                症例報告を公開したりということで活動を行ってきま
+                した．何とか第 1 波を乗り越えることができましたが，
+                今でも東京を中心にクラスターが報告されておりま
+                す．
+                </Typography>
+              </CardContent>
+            </Card>
             <Box
               flexGrow={1}
               mt={3}
@@ -185,14 +131,6 @@ const LoginView = () => {
             <Box my={3}>
               <Divider />
             </Box>
-            <Link
-              component={RouterLink}
-              to="/register"
-              variant="body2"
-              color="textSecondary"
-            >
-              Create new account
-            </Link>
           </CardContent>
         </Card>
       </Container>
