@@ -9,7 +9,9 @@ import {
   IconButton,
   Toolbar,
   makeStyles,
-  SvgIcon
+  SvgIcon,
+  Button,
+  ButtonGroup
 } from '@material-ui/core';
 import { Menu as MenuIcon } from 'react-feather';
 import Logo from 'src/components/Logo';
@@ -59,22 +61,20 @@ const TopBar = ({
             </SvgIcon>
           </IconButton>
         </Hidden>
-        <Hidden mdDown>
-          <RouterLink to="/">
-            <Logo />
-          </RouterLink>
-        </Hidden>
+        <ButtonGroup variant="text" size="large" color="inherit" aria-label="text primary button group">
+          <Button>ファイル提出</Button>
+          <Button>FAQ</Button>
+          <Button>お問い合わせ</Button>
+        </ButtonGroup>
         <Box
           ml={2}
           flexGrow={1}
         />
-        <Search />
-        <Contacts />
-        <Notifications />
-        <Settings />
-        <Box ml={2}>
-          <Account />
-        </Box>
+        <ButtonGroup variant="text" size="large" color="inherit" aria-label="text primary button group">
+          <Button>株式会社ベンジャミン</Button>
+          <Button>梶間</Button>
+          <Button>ログアウト</Button>
+        </ButtonGroup>
       </Toolbar>
     </AppBar>
   );

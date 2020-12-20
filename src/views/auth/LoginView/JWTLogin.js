@@ -101,7 +101,7 @@ const JWTLogin = ({ className, ...rest }) => {
               label="Age"
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>選択してください</em>
               </MenuItem>
               <MenuItem value={10}>○○シンポジウム（PDF）</MenuItem>
             </Select>
@@ -152,7 +152,7 @@ const JWTLogin = ({ className, ...rest }) => {
           </Box>
           <Box mt={2}>
             <Button
-              color="secondary"
+              color="primary"
               disabled={isSubmitting}
               fullWidth
               size="large"
