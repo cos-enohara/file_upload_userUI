@@ -9,7 +9,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: 100
+    paddingBottom: 100,
+  },
+  container: {
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 }));
 
@@ -21,9 +25,8 @@ const ProductCreateView = () => {
       className={classes.root}
       title="Product Create"
     >
-      <Container maxWidth="lg">
-        <Header />
-        <ProductCreateForm />
+      <Container maxWidth="lg" >
+        <ProductCreateForm className={classes.container}/>
       </Container>
     </Page>
   );

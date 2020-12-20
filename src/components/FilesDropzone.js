@@ -103,20 +103,8 @@ const FilesDropzone = ({ className, ...rest }) => {
             gutterBottom
             variant="h3"
           >
-            Select files
+            ファイルをドラッグアンドドロップしてください
           </Typography>
-          <Box mt={2}>
-            <Typography
-              color="textPrimary"
-              variant="body1"
-            >
-              Drop files here or click
-              {' '}
-              <Link underline="always">browse</Link>
-              {' '}
-              thorough your machine
-            </Typography>
-          </Box>
         </div>
       </div>
       {files.length > 0 && (

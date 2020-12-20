@@ -24,28 +24,46 @@ import {
 import QuillEditor from 'src/components/QuillEditor';
 import FilesDropzone from 'src/components/FilesDropzone';
 
-const categories = [
-  {
-    id: 'shirts',
-    name: 'Shirts'
-  },
-  {
-    id: 'phones',
-    name: 'Phones'
-  },
-  {
-    id: 'cars',
-    name: 'Cars'
-  }
-];
-
 const useStyles = makeStyles(() => ({
   root: {},
   editor: {
     '& .ql-editor': {
       height: 400
     }
+  },
+  form: {
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+  button: {
+    minWidth: 150,
+    margin: 5
+  },
+  buttonGroup: {
+    marginTop: 100,
+    marginBottom: 50
+  },
+  key: {
+    display: 'inline-block',
+    padding: 20,
+    paddingBottom: 0,
+    textAlign: 'right',
+    width: '30%',
+    color: 'gray',
+    verticalAlign: 'middle',
+    height: '60px'
+  },
+  value: {
+    display: 'inline-block',
+    padding: 20,
+    paddingLeft: 30,
+    paddingBottom: 0,
+    width: '70%',
+    fontWeight: 'bold',
+    verticalAlign: 'top',
+    height: '60px'
   }
+
 }));
 
 const ProductCreateForm = ({ className, ...rest }) => {
@@ -54,7 +72,7 @@ const ProductCreateForm = ({ className, ...rest }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <Formik
+    <Formik 
       initialValues={{
         category: '',
         description: '',
@@ -124,179 +142,56 @@ const ProductCreateForm = ({ className, ...rest }) => {
               item
               xs={12}
               lg={8}
+              className={classes.form}
             >
               <Card>
                 <CardContent>
-                  <TextField
-                    error={Boolean(touched.name && errors.name)}
-                    fullWidth
-                    helperText={touched.name && errors.name}
-                    label="Product Name"
-                    name="name"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.name}
-                    variant="outlined"
-                  />
+                  <div style={{paddingBottom: '100px'}}>
+                    <Box>
+                      <p className={classes.key}>イベント名</p>
+                      <p className={classes.value}>○×学会</p>
+                    </Box>
+                    <Box>
+                      <p className={classes.key}>演者名</p>
+                      <p className={classes.value}>梶間　剛</p>
+                    </Box>
+                    <Box>
+                      <p className={classes.key}>タイトル</p>
+                      <p className={classes.value}>ABCについて</p>
+                    </Box>
+                    <Box>
+                      <p className={classes.key}>ファイル説明</p>
+                      <p className={classes.value} style={{fontWeight: 'normal'}}>
+                        アップロード可能なサイズは○×です。xxxまでに提出をおねがいします
+                      </p>
+                    </Box>
+                  </div>
+
+                  <Divider />
+
+                  <FilesDropzone />
                   <Box
-                    mt={3}
-                    mb={1}
-                  >
-                    <Typography
-                      variant="subtitle2"
-                      color="textSecondary"
+                    className={classes.buttonGroup}
+                    align="center"
                     >
-                      Description
-                    </Typography>
-                  </Box>
-                  <Paper variant="outlined">
-                    <QuillEditor
-                      className={classes.editor}
-                      value={values.description}
-                      onChange={(value) => setFieldValue('description', value)}
-                    />
-                  </Paper>
-                  {(touched.description && errors.description) && (
-                    <Box mt={2}>
-                      <FormHelperText error>
-                        {errors.description}
-                      </FormHelperText>
-                    </Box>
-                  )}
-                </CardContent>
-              </Card>
-              <Box mt={3}>
-                <Card>
-                  <CardHeader title="Upload Images" />
-                  <Divider />
-                  <CardContent>
-                    <FilesDropzone />
-                  </CardContent>
-                </Card>
-              </Box>
-              <Box mt={3}>
-                <Card>
-                  <CardHeader title="Prices" />
-                  <Divider />
-                  <CardContent>
-                    <Grid
-                      container
-                      spacing={3}
+                    <Button
+                      color="default"
+                      size="large"
+                      type="submit"
+                      variant="outlined"
+                      className={classes.button}
                     >
-                      <Grid item xs={12} md={6}>
-                        <TextField
-                          error={Boolean(touched.price && errors.price)}
-                          fullWidth
-                          helperText={touched.price && errors.price
-                            ? errors.price
-                            : 'If you have a sale price this will be shown as old price'}
-                          label="Price"
-                          name="price"
-                          type="number"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.price}
-                          variant="outlined"
-                        />
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <TextField
-                          error={Boolean(touched.salePrice && errors.salePrice)}
-                          fullWidth
-                          helperText={touched.salePrice && errors.salePrice}
-                          label="Sale price"
-                          name="salePrice"
-                          type="number"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.salePrice}
-                          variant="outlined"
-                        />
-                      </Grid>
-                    </Grid>
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={(
-                          <Checkbox
-                            checked={values.isTaxable}
-                            onChange={handleChange}
-                            value={values.isTaxable}
-                            name="isTaxable"
-                          />
-                        )}
-                        label="Product is taxable"
-                      />
-                    </Box>
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={(
-                          <Checkbox
-                            checked={values.includesTaxes}
-                            onChange={handleChange}
-                            value={values.includesTaxes}
-                            name="includesTaxes"
-                          />
-                        )}
-                        label="Price includes taxes"
-                      />
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Box>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              lg={4}
-            >
-              <Card>
-                <CardHeader title="Organize" />
-                <Divider />
-                <CardContent>
-                  <TextField
-                    fullWidth
-                    label="Category"
-                    name="category"
-                    onChange={handleChange}
-                    select
-                    SelectProps={{ native: true }}
-                    value={values.category}
-                    variant="outlined"
-                  >
-                    {categories.map((category) => (
-                      <option
-                        key={category.id}
-                        value={category.id}
-                      >
-                        {category.name}
-                      </option>
-                    ))}
-                  </TextField>
-                  <Box mt={2}>
-                    <TextField
-                      error={Boolean(touched.productCode && errors.productCode)}
-                      fullWidth
-                      helperText={touched.productCode && errors.productCode}
-                      label="Product Code"
-                      name="productCode"
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      value={values.productCode}
-                      variant="outlined"
-                    />
-                  </Box>
-                  <Box mt={2}>
-                    <TextField
-                      error={Boolean(touched.productSku && errors.productSku)}
-                      fullWidth
-                      helperText={touched.productSku && errors.productSku}
-                      label="Product Sku"
-                      name="productSku"
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      value={values.productSku}
-                      variant="outlined"
-                    />
+                      戻る
+                    </Button>
+                    <Button
+                      color="secondary"
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      className={classes.button}
+                    >
+                      登録
+                    </Button>
                   </Box>
                 </CardContent>
               </Card>
@@ -309,16 +204,6 @@ const ProductCreateForm = ({ className, ...rest }) => {
               </FormHelperText>
             </Box>
           )}
-          <Box mt={2}>
-            <Button
-              color="secondary"
-              variant="contained"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              Create product
-            </Button>
-          </Box>
         </form>
       )}
     </Formik>
