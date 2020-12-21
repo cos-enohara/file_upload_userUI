@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100%',
     paddingTop: theme.spacing(3),
     paddingBottom: 100,
-    maxWidth: '60%',
+    maxWidth: '40%',
     display: 'flex',
     flexDirection: 'column',
     marginRight: 'auto',
