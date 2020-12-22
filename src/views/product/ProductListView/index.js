@@ -18,6 +18,9 @@ import Page from 'src/components/Page';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Header from './Header';
 import Results from './Results';
+import useAuth from 'src/hooks/useAuth';
+import { useHistory } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,6 +70,11 @@ const ProductListView = () => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [products, setProducts] = useState([]);
+  const { user, logout } = useAuth();
+  const { enqueueSnackbar } = useSnackbar();
+  const history = useHistory();
+
+
 
   const getProducts = useCallback(async () => {
     try {
@@ -83,6 +91,30 @@ const ProductListView = () => {
   useEffect(() => {
     getProducts();
   }, [getProducts]);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      history.push('/');
+    } catch (err) {
+      console.error(err);
+      enqueueSnackbar('Unable to logout', {
+        variant: 'error'
+      });
+    }
+  };
+  
+  const handleFileUpload = async () => {
+    try {
+      history.push('/app/fileupload');
+    } catch (err) {
+      console.error(err);
+      enqueueSnackbar('Unable', {
+        variant: 'error'
+      });
+    }
+  };
+  
 
   return (
     <Page
@@ -153,22 +185,20 @@ const ProductListView = () => {
           className={classes.buttonGroup}
           align="center"
           >
-          <Button
+          <Button 
             color="default"
             size="large"
-            type="submit"
             variant="outlined"
             className={classes.button}
-          >
+            onClick={handleLogout}>
             ログアウト
           </Button>
           <Button
             color="secondary"
             size="large"
-            type="submit"
             variant="contained"
             className={classes.button}
-          >
+            onClick={handleFileUpload}>
             次へ
           </Button>
         </Box>

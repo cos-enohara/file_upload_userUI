@@ -216,16 +216,15 @@ const ProductCreateForm = ({ className, ...rest }) => {
                     <Button
                       color="default"
                       size="large"
-                      type="submit"
                       variant="outlined"
                       className={classes.button}
+                      onClick={() => history.goBack()}
                     >
                       戻る
                     </Button>
                     <Button
                       color="secondary"
                       size="large"
-                      type="submit"
                       variant="contained"
                       className={classes.button}
                     >

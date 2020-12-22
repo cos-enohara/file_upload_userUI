@@ -54,7 +54,7 @@ const routes = [
   {
     exact: true,
     guard: GuestGuard,
-    path: '/login',
+    path: '/',
     component: lazy(() => import('src/views/auth/LoginView'))
   },
   {
@@ -81,7 +81,7 @@ const routes = [
       {
         exact: true,
         path: '/app/account',
-        component: lazy(() => import('src/views/account/AccountView'))
+        component: () => <Redirect to="/app/eventguide" />
       },
       {
         exact: true,
@@ -181,12 +181,12 @@ const routes = [
       },
       {
         exact: true,
-        path: '/app/management/products',
+        path: '/app/eventguide',
         component: lazy(() => import('src/views/product/ProductListView'))
       },
       {
         exact: true,
-        path: '/app/management/products/create',
+        path: '/app/fileupload',
         component: lazy(() => import('src/views/product/ProductCreateView'))
       },
       {
@@ -252,86 +252,7 @@ const routes = [
       {
         exact: true,
         path: '/app',
-        component: () => <Redirect to="/app/reports/dashboard" />
-      },
-      {
-        component: () => <Redirect to="/404" />
-      }
-    ]
-  },
-  {
-    path: '/docs',
-    layout: DocsLayout,
-    routes: [
-      {
-        exact: true,
-        path: '/docs',
-        component: () => <Redirect to="/docs/welcome" />
-      },
-      {
-        exact: true,
-        path: '/docs/welcome',
-        component: lazy(() => import('src/views/docs/WelcomeView'))
-      },
-      {
-        exact: true,
-        path: '/docs/getting-started',
-        component: lazy(() => import('src/views/docs/GettingStartedView'))
-      },
-      {
-        exact: true,
-        path: '/docs/environment-variables',
-        component: lazy(() => import('src/views/docs/EnvironmentVariablesView'))
-      },
-      {
-        exact: true,
-        path: '/docs/deployment',
-        component: lazy(() => import('src/views/docs/DeploymentView'))
-      },
-      {
-        exact: true,
-        path: '/docs/api-calls',
-        component: lazy(() => import('src/views/docs/APICallsView'))
-      },
-      {
-        exact: true,
-        path: '/docs/analytics',
-        component: lazy(() => import('src/views/docs/AnalyticsView'))
-      },
-      {
-        exact: true,
-        path: '/docs/authentication',
-        component: lazy(() => import('src/views/docs/AuthenticationView'))
-      },
-      {
-        exact: true,
-        path: '/docs/routing',
-        component: lazy(() => import('src/views/docs/RoutingView'))
-      },
-      {
-        exact: true,
-        path: '/docs/settings',
-        component: lazy(() => import('src/views/docs/SettingsView'))
-      },
-      {
-        exact: true,
-        path: '/docs/state-management',
-        component: lazy(() => import('src/views/docs/StateManagementView'))
-      },
-      {
-        exact: true,
-        path: '/docs/theming',
-        component: lazy(() => import('src/views/docs/ThemingView'))
-      },
-      {
-        exact: true,
-        path: '/docs/support',
-        component: lazy(() => import('src/views/docs/SupportView'))
-      },
-      {
-        exact: true,
-        path: '/docs/changelog',
-        component: lazy(() => import('src/views/docs/ChangelogView'))
+        component: () => <Redirect to="/app/login" />
       },
       {
         component: () => <Redirect to="/404" />
